@@ -1,0 +1,12 @@
+section {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+@media (max-width: 768px) {
+    section {
+        flex-direction: column;
+    }
+}

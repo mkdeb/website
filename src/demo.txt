@@ -1,0 +1,23 @@
+`$ `go get mkdeb.sh/cmd/mkdeb
+^2000
+`$ `mkdeb build prometheus:amd64@2.2.1
+`<span class="green">***</span> Package <span class="green bold">prometheus</span>`
+`<span class="blue">***</span> Downloading "https://github.com/prometheus/prometheus/releases/download/v2.2.1/prometheus-2.2.1.linux-amd64.tar.gz"...`^2000
+`<span class="blue">***</span> Opening "prometheus-2.2.1.linux-amd64.tar.gz" upstream archive...`
+`<span class="blue">***</span> Adding control files...`
+`append "postinst" (1.2 kB)`^200
+`append "postrm" (944 B)`^200
+`<span class="blue">***</span> Adding upstream files...`
+`append "prometheus.yml" as "/etc/prometheus/prometheus.yml" (928 B)`^200
+`append "prometheus" as "/usr/bin/prometheus" (66 MB)`^3000
+`append "promtool" as "/usr/bin/promtool" (44 MB)`^1000
+`<span class="blue">***</span> Adding recipe files...`
+`append "default" as "/etc/default/prometheus" (235 B)`^200
+`append "init" as "/etc/init.d/prometheus" (1.3 kB)`^400
+`<span class="blue">***</span> Adding recipe directories...`
+`append "/var/lib/prometheus"`^100
+`append "/var/log/prometheus"`^100
+`<span class="blue">***</span> Result`
+`📦   prometheus_2.2.1~mkdeb1_amd64.deb: size=24 MB`
+^0
+`$ `

@@ -1,0 +1,122 @@
+section.demo {
+    background: #1565c0 radial-gradient(circle at 75% 25%, #90caf9, #1565c0) no-repeat;
+    color: #fff;
+    min-height: 100vh;
+    padding: 20vh 16vw;
+    z-index: 1;
+
+    header {
+        display: flex;
+        flex-direction: column;
+        margin-right: 6vw;
+        max-width: 18rem;
+        padding: 4vh 0;
+
+        h1,
+        h2 {
+            font-weight: 300;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+        }
+
+        h2 {
+            font-size: 1rem;
+            opacity: 0.65;
+        }
+
+        p {
+            border-left: 1.5px solid rgba(255, 255, 255, 0.5);
+            padding: 0.5rem 1rem;
+            margin: 4vh 0;
+        }
+
+        .actions {
+            align-items: flex-end;
+            display: flex;
+            flex-grow: 1;
+            margin: 2vh 0;
+
+            a {
+                align-items: center;
+                background-color: rgba(0, 0, 0, 0.25);
+                border-radius: 0.2rem;
+                color: rgba(255, 255, 255, 0.75);
+                display: inline-flex;
+                line-height: 2.5rem;
+                padding: 0 1.35rem;
+                text-decoration: none;
+                transition: background-color 0.2s ease-in-out;
+                white-space: nowrap;
+
+                &:hover {
+                    background-color: rgba(0, 0, 0, 0.35);
+                }
+
+                &.highlight {
+                    background-color: rgba(255, 255, 255, 0.25);
+
+                    &:hover {
+                        background-color: rgba(255, 255, 255, 0.35);
+                    }
+                }
+
+                & + a {
+                    margin-left: 1rem;
+                }
+
+                .icon {
+                    font-size: 1rem;
+                    width: 1.5rem;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+    section.demo {
+        padding: 10vh 8vw;
+    }
+}
+
+@media (max-width: 768px) {
+    section.demo {
+        padding: 4vh 8vw;
+
+        header {
+            max-width: unset;
+
+            .actions {
+                justify-content: center;
+            }
+        }
+
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    section.demo {
+        header {
+            flex-grow: 1;
+            margin-right: 0;
+
+            .actions {
+                align-items: center;
+                flex-direction: column;
+
+                a {
+                    justify-content: center;
+                    width: 100%;
+
+                    & + a {
+                        margin: 1rem 0 0;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,46 @@
+.window {
+    background-color: #263238;
+    border-radius: 0.35rem;
+    box-shadow: 0 0.65rem 2rem rgba(0, 0, 0, 0.3);
+    height: 28rem;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+
+    .top {
+        border-radius: 0.35rem 0.35rem 0 0;
+        display: flex;
+        padding: 0.75rem 0.5rem 0.25rem;
+
+        .button {
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 100%;
+            box-sizing: border-box;
+            height: 0.75rem;
+            margin: 0 0.25rem;
+            width: 0.75rem;
+
+            &.red {
+                background-color: #fc615d;
+            }
+
+            &.yellow {
+                background-color: #fdbe41;
+            }
+
+            &.green {
+                background-color: #34c84a;
+            }
+        }
+    }
+
+    &.scroll .top {
+        box-shadow: 0 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+    }
+}
+
+@media (max-width: 480px) {
+    .window {
+        display: none;
+    }
+}
