@@ -3,6 +3,7 @@
 `$ `mkdeb build prometheus:amd64=2.2.1
 `<span class="green">***</span> Package <span class="green bold">prometheus</span>`
 `<span class="blue">***</span> Downloading "https://github.com/prometheus/prometheus/releases/download/v2.2.1/prometheus-2.2.1.linux-amd64.tar.gz"...`^2000
+`download 26 MB`
 `<span class="blue">***</span> Opening "prometheus-2.2.1.linux-amd64.tar.gz" upstream archive...`
 `<span class="blue">***</span> Adding control files...`
 `append "postinst" (1.2 kB)`^200
