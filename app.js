@@ -2,8 +2,9 @@
 /******/ 	// install a JSONP callback for chunk loading
 /******/ 	function webpackJsonpCallback(data) {
 /******/ 		var chunkIds = data[0];
-/******/ 		var moreModules = data[1]
+/******/ 		var moreModules = data[1];
 /******/ 		var executeModules = data[2];
+/******/
 /******/ 		// add "moreModules" to the modules object,
 /******/ 		// then flag all "chunkIds" as loaded and fire callback
 /******/ 		var moduleId, chunkId, i = 0, resolves = [];
@@ -20,6 +21,7 @@
 /******/ 			}
 /******/ 		}
 /******/ 		if(parentJsonpFunction) parentJsonpFunction(data);
+/******/
 /******/ 		while(resolves.length) {
 /******/ 			resolves.shift()();
 /******/ 		}
@@ -34,12 +36,12 @@
 /******/ 		var result;
 /******/ 		for(var i = 0; i < deferredModules.length; i++) {
 /******/ 			var deferredModule = deferredModules[i];
-/******/ 			var fullfilled = true;
+/******/ 			var fulfilled = true;
 /******/ 			for(var j = 1; j < deferredModule.length; j++) {
 /******/ 				var depId = deferredModule[j];
-/******/ 				if(installedChunks[depId] !== 0) fullfilled = false;
+/******/ 				if(installedChunks[depId] !== 0) fulfilled = false;
 /******/ 			}
-/******/ 			if(fullfilled) {
+/******/ 			if(fulfilled) {
 /******/ 				deferredModules.splice(i--, 1);
 /******/ 				result = __webpack_require__(__webpack_require__.s = deferredModule[0]);
 /******/ 			}
@@ -51,6 +53,8 @@
 /******/ 	var installedModules = {};
 /******/
 /******/ 	// object to store loaded and loading chunks
+/******/ 	// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 	// Promise = chunk loading, 0 = chunk loaded
 /******/ 	var installedChunks = {
 /******/ 		"app": 0
 /******/ 	};
@@ -91,17 +95,32 @@
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
 /******/ 		}
 /******/ 	};
 /******/
 /******/ 	// define __esModule on exports
 /******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
 /******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
 /******/ 	};
 /******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
@@ -146,59 +165,42 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var typed_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! typed.js */ "../node_modules/typed.js/lib/typed.js");
 /* harmony import */ var typed_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(typed_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _fortawesome_fontawesome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fortawesome/fontawesome */ "../node_modules/@fortawesome/fontawesome/index.es.js");
-/* harmony import */ var _fortawesome_fontawesome_free_regular_faArrowAltCircleDown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/fontawesome-free-regular/faArrowAltCircleDown */ "../node_modules/@fortawesome/fontawesome-free-regular/faArrowAltCircleDown.js");
-/* harmony import */ var _fortawesome_fontawesome_free_regular_faArrowAltCircleDown__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_free_regular_faArrowAltCircleDown__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _fortawesome_fontawesome_free_solid_faCubes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fortawesome/fontawesome-free-solid/faCubes */ "../node_modules/@fortawesome/fontawesome-free-solid/faCubes.js");
-/* harmony import */ var _fortawesome_fontawesome_free_solid_faCubes__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_free_solid_faCubes__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _fortawesome_fontawesome_free_brands_faGithub__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @fortawesome/fontawesome-free-brands/faGithub */ "../node_modules/@fortawesome/fontawesome-free-brands/faGithub.js");
-/* harmony import */ var _fortawesome_fontawesome_free_brands_faGithub__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_free_brands_faGithub__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _fortawesome_fontawesome_free_solid_faLink__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fortawesome/fontawesome-free-solid/faLink */ "../node_modules/@fortawesome/fontawesome-free-solid/faLink.js");
-/* harmony import */ var _fortawesome_fontawesome_free_solid_faLink__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_free_solid_faLink__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./style */ "./style/index.js");
-/* harmony import */ var _demo_txt__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./demo.txt */ "./demo.txt");
-/* harmony import */ var _demo_txt__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_demo_txt__WEBPACK_IMPORTED_MODULE_7__);
-
-
-// Load icons
+/* harmony import */ var _fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fortawesome/fontawesome-svg-core */ "../node_modules/@fortawesome/fontawesome-svg-core/index.es.js");
+/* harmony import */ var _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/free-regular-svg-icons */ "../node_modules/@fortawesome/free-regular-svg-icons/index.es.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "../node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
+/* harmony import */ var _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @fortawesome/free-brands-svg-icons */ "../node_modules/@fortawesome/free-brands-svg-icons/index.es.js");
+/* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./style */ "./style/index.js");
+/* harmony import */ var _demo_txt__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./demo.txt */ "./demo.txt");
+ // Load icons
 
 
 
 
 
-
-_fortawesome_fontawesome__WEBPACK_IMPORTED_MODULE_1__["default"].library.add(
-    _fortawesome_fontawesome_free_regular_faArrowAltCircleDown__WEBPACK_IMPORTED_MODULE_2___default.a,
-    _fortawesome_fontawesome_free_solid_faCubes__WEBPACK_IMPORTED_MODULE_3___default.a,
-    _fortawesome_fontawesome_free_brands_faGithub__WEBPACK_IMPORTED_MODULE_4___default.a,
-    _fortawesome_fontawesome_free_solid_faLink__WEBPACK_IMPORTED_MODULE_5___default.a,
-);
-
-// Import local dependencies
+_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_1__["library"].add(_fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faArrowAltCircleDown"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faCubes"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faGithub"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faLink"]);
+_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_1__["dom"].watch(); // Import local dependencies
 
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Toggle terminal window scroll class based on scroll position
-    let terminal = document.querySelector("#terminal");
+  // Toggle terminal window scroll class based on scroll position
+  let terminal = document.querySelector("#terminal");
+  terminal.addEventListener("scroll", e => {
+    e.target.parentNode.classList.toggle("scroll", e.target.scrollTop > 0);
+  }); // Trigger terminal typing
 
-    terminal.addEventListener("scroll", (e) => {
-        e.target.parentNode.classList.toggle("scroll", e.target.scrollTop > 0);
-    });
+  let cursor = null;
+  new typed_js__WEBPACK_IMPORTED_MODULE_0___default.a("#typed", {
+    cursorChar: "&#9611;",
 
-    // Trigger terminal typing
-    let cursor = null;
+    onTypingResumed() {
+      terminal.scrollTop = terminal.scrollHeight - terminal.clientHeight;
+    },
 
-    new typed_js__WEBPACK_IMPORTED_MODULE_0___default.a("#typed", {
-        cursorChar: "&#9611;",
-        onTypingResumed() {
-            terminal.scrollTop = terminal.scrollHeight - terminal.clientHeight;
-        },
-        strings: [_demo_txt__WEBPACK_IMPORTED_MODULE_7___default.a],
-        typeSpeed: 40,
-    });
+    strings: [_demo_txt__WEBPACK_IMPORTED_MODULE_6__["default"]],
+    typeSpeed: 40
+  });
 });
-
 
 /***/ }),
 
@@ -206,10 +208,12 @@ document.addEventListener("DOMContentLoaded", () => {
 /*!******************!*\
   !*** ./demo.txt ***!
   \******************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "`$ `go get mkdeb.sh/cmd/mkdeb\n^2000\n`$ `mkdeb build prometheus:amd64=2.2.1\n`<span class=\"green\">***</span> Package <span class=\"green bold\">prometheus</span>`\n`<span class=\"blue\">***</span> Downloading \"https://github.com/prometheus/prometheus/releases/download/v2.2.1/prometheus-2.2.1.linux-amd64.tar.gz\"...`^2000\n`download 26 MB`\n`<span class=\"blue\">***</span> Opening \"prometheus-2.2.1.linux-amd64.tar.gz\" upstream archive...`\n`<span class=\"blue\">***</span> Adding control files...`\n`append \"postinst\" (1.2 kB)`^200\n`append \"postrm\" (944 B)`^200\n`<span class=\"blue\">***</span> Adding upstream files...`\n`append \"prometheus.yml\" as \"/etc/prometheus/prometheus.yml\" (928 B)`^200\n`append \"prometheus\" as \"/usr/bin/prometheus\" (66 MB)`^3000\n`append \"promtool\" as \"/usr/bin/promtool\" (44 MB)`^1000\n`<span class=\"blue\">***</span> Adding recipe files...`\n`append \"default\" as \"/etc/default/prometheus\" (235 B)`^200\n`append \"init\" as \"/etc/init.d/prometheus\" (1.3 kB)`^400\n`<span class=\"blue\">***</span> Adding recipe directories...`\n`append \"/var/lib/prometheus\"`^100\n`append \"/var/log/prometheus\"`^100\n`<span class=\"blue\">***</span> Result`\n`📦   prometheus_2.2.1~mkdeb1_amd64.deb: size=24 MB`\n^0\n`$ `\n"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("`$ `go get mkdeb.sh/cmd/mkdeb\n^2000\n`$ `mkdeb build prometheus:amd64=2.2.1\n`<span class=\"green\">==></span> Package <span class=\"green bold\">prometheus</span>`\n`<span class=\"blue\">==></span> Downloading \"https://github.com/prometheus/prometheus/releases/download/v2.2.1/prometheus-2.2.1.linux-amd64.tar.gz\"...`^2000\n`download 26 MB`\n`<span class=\"blue\">==></span> Opening \"prometheus-2.2.1.linux-amd64.tar.gz\" upstream archive...`\n`<span class=\"blue\">==></span> Adding control files...`\n`append \"postinst\" (1.2 kB)`^200\n`append \"postrm\" (944 B)`^200\n`<span class=\"blue\">==></span> Adding upstream files...`\n`append \"prometheus.yml\" as \"/etc/prometheus/prometheus.yml\" (928 B)`^200\n`append \"prometheus\" as \"/usr/bin/prometheus\" (66 MB)`^3000\n`append \"promtool\" as \"/usr/bin/promtool\" (44 MB)`^1000\n`<span class=\"blue\">==></span> Adding recipe files...`\n`append \"default\" as \"/etc/default/prometheus\" (235 B)`^200\n`append \"init\" as \"/etc/init.d/prometheus\" (1.3 kB)`^400\n`<span class=\"blue\">==></span> Adding recipe directories...`\n`append \"/var/lib/prometheus\"`^100\n`append \"/var/log/prometheus\"`^100\n`<span class=\"blue\">==></span> Summary`\n`📦 prometheus_2.2.1~mkdeb1_amd64.deb: size=24 MB`\n^0\n`$ `\n");
 
 /***/ }),
 
@@ -218,9 +222,9 @@ module.exports = "`$ `go get mkdeb.sh/cmd/mkdeb\n^2000\n`$ `mkdeb build promethe
   !*** ./style/animation.scss ***!
   \******************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -229,9 +233,9 @@ module.exports = "`$ `go get mkdeb.sh/cmd/mkdeb\n^2000\n`$ `mkdeb build promethe
   !*** ./style/body.scss ***!
   \*************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -240,9 +244,9 @@ module.exports = "`$ `go get mkdeb.sh/cmd/mkdeb\n^2000\n`$ `mkdeb build promethe
   !*** ./style/demo.scss ***!
   \*************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -251,9 +255,9 @@ module.exports = "`$ `go get mkdeb.sh/cmd/mkdeb\n^2000\n`$ `mkdeb build promethe
   !*** ./style/font.scss ***!
   \*************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -262,9 +266,9 @@ module.exports = "`$ `go get mkdeb.sh/cmd/mkdeb\n^2000\n`$ `mkdeb build promethe
   !*** ./style/footer.scss ***!
   \***************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -308,10 +312,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
 /***/ }),
 
 /***/ "./style/more.scss":
@@ -319,9 +319,9 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./style/more.scss ***!
   \*************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -330,9 +330,9 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./style/reset.scss ***!
   \**************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -341,9 +341,9 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./style/section.scss ***!
   \****************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -352,9 +352,9 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./style/terminal.scss ***!
   \*****************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -363,9 +363,9 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./style/window.scss ***!
   \***************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+// extracted by mini-css-extract-plugin
 
 /***/ })
 
