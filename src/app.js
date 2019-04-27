@@ -1,18 +1,19 @@
 import typed from "typed.js";
 
 // Load icons
-import fontawesome from "@fortawesome/fontawesome";
-import faArrowAltCircleDown from "@fortawesome/fontawesome-free-regular/faArrowAltCircleDown";
-import faCubes from "@fortawesome/fontawesome-free-solid/faCubes";
-import faGithub from "@fortawesome/fontawesome-free-brands/faGithub";
-import faLink from "@fortawesome/fontawesome-free-solid/faLink";
+import { dom, library } from "@fortawesome/fontawesome-svg-core";
+import { faArrowAltCircleDown } from "@fortawesome/free-regular-svg-icons";
+import { faCubes, faLink } from "@fortawesome/free-solid-svg-icons";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
-fontawesome.library.add(
+library.add(
     faArrowAltCircleDown,
     faCubes,
     faGithub,
     faLink,
 );
+
+dom.watch();
 
 // Import local dependencies
 import "./style";
