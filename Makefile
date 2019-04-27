@@ -1,9 +1,9 @@
 # -*- Makefile -*-
 
 GO_IMPORTS = archive \
+	     catalog \
 	     deb \
 	     recipe \
-	     repository \
 	     cmd/mkdeb
 
 all: build
